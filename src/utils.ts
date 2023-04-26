@@ -124,6 +124,10 @@ export const isCodeforcesUrl = (url: URL): boolean => {
     return url.hostname === 'codeforces.com';
 };
 
+export const isBaekjoonUrl = (url: URL): boolean => {
+    return url.hostname === 'www.acmicpc.net';
+};
+
 export const ocAppend = (string: string) => {
     oc.append(string);
 };
