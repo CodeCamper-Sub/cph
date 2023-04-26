@@ -101,3 +101,8 @@ export const getProblemName = (problemUrl: string): string => {
 
     return problemName;
 };
+
+export const getBaekjoonProblemName = (problemUrl: string): string => {
+    const parts = problemUrl.split('/');
+    return parts[parts.length - 1];
+};

@@ -5,7 +5,7 @@ import { saveProblem } from './parser';
 import * as vscode from 'vscode';
 import path from 'path';
 import { writeFileSync, readFileSync, existsSync } from 'fs';
-import { isCodeforcesUrl, randomId } from './utils';
+import { isBaekjoonUrl, isCodeforcesUrl, randomId } from './utils';
 import {
     getDefaultLangPref,
     getLanguageId,
@@ -13,7 +13,7 @@ import {
     getMenuChoices,
     getDefaultLanguageTemplateFileLocation,
 } from './preferences';
-import { getProblemName } from './submit';
+import { getBaekjoonProblemName, getProblemName } from './submit';
 import { spawn } from 'child_process';
 import { getJudgeViewProvider } from './extension';
 import { words_in_text } from './utilsPure';
@@ -150,6 +150,8 @@ export const setupCompanionServer = () => {
 export const getProblemFileName = (problem: Problem, ext: string) => {
     if (isCodeforcesUrl(new URL(problem.url)) && useShortCodeForcesName()) {
         return `${getProblemName(problem.url)}.${ext}`;
+    } else if (isBaekjoonUrl(new URL(problem.url))) {
+        return `${getBaekjoonProblemName(problem.url)}.${ext}`;
     } else {
         console.log(
             isCodeforcesUrl(new URL(problem.url)),
