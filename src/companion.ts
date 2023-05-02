@@ -12,6 +12,7 @@ import {
     useShortCodeForcesName,
     getMenuChoices,
     getDefaultLanguageTemplateFileLocation,
+    getCompanionSaveLocationPref,
 } from './preferences';
 import { getBaekjoonProblemName, getProblemName } from './submit';
 import { spawn } from 'child_process';
@@ -177,10 +178,14 @@ const handleNewProblem = async (problem: Problem) => {
             problem: undefined,
         });
     }
-    const folder = vscode.workspace.workspaceFolders?.[0].uri.fsPath;
+    let folder = vscode.workspace.workspaceFolders?.[0].uri.fsPath;
     if (folder === undefined) {
         vscode.window.showInformationMessage('Please open a folder first.');
         return;
+    }
+    const companionSaveLocation = getCompanionSaveLocationPref();
+    if (companionSaveLocation != null) {
+        folder = path.join(folder, companionSaveLocation);
     }
     const defaultLanguage = getDefaultLangPref();
     let extn: string;

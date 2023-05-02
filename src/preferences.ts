@@ -85,6 +85,15 @@ export const getDefaultLangPref = (): string | null => {
 export const useShortCodeForcesName = (): boolean => {
     return getPreference('general.useShortCodeForcesName');
 };
+
+export const getCompanionSaveLocationPref = (): string | null => {
+    const pref = getPreference('general.companionSaveLocation');
+    if (pref == '') {
+        return null;
+    }
+    return pref;
+};
+
 export const getDefaultLanguageTemplateFileLocation = (): string | null => {
     const pref = getPreference('general.defaultLanguageTemplateFileLocation');
     if (pref === '') {
