@@ -280,6 +280,11 @@
                     "default": false,
                     "description": "Use a short ID for problem file generated ( like 144C ) instead of the complete problem name for codeforces problems"
                 },
+                "cph.general.companionSaveLocation": {
+                    "type": "string",
+                    "default": "",
+                    "description": "Location where generated source file with companion saved. Use relative path from your workspace"
+                },
                 "cph.general.retainWebviewContext": {
                     "type": "boolean",
                     "default": false,
