@@ -88,3 +88,36 @@ PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License along with
 this program. If not, see https://www.gnu.org/licenses/.
+
+## How to Install (Mac OS)
+
+0. Install Node.js / npm
+
+-   https://nodejs.org/en/download/package-manager#macos 참고
+
+1. Install VSCE package (globally)
+
+```
+$ npm install --global vsce
+```
+
+2. Install webpack package (globally)
+
+```
+$ npm install --global webpack
+```
+
+3. Make .vsix File
+
+-   cd 명령어를 통해 이 git Repository의 Root 디렉토리로 이동
+
+```
+$ vsce package
+```
+
+4. Install in VsCode
+
+-   VsCode를 열고, 좌측 Extensions 탭 클릭
+-   Extensions 탭의 우측 상단에 있는 ... 버튼 클릭
+-   `Install from VSIX` 메뉴를 클릭
+-   3단계에서 만든 vsix 파일을 Finder에서 선택
