@@ -21,15 +21,22 @@ export const getAutoShowJudgePref = (): boolean =>
 
 export const getSaveLocationPref = (): string => {
     const pref = getPreference('general.saveLocation');
-    const validSaveLocation = pref == '' || fs.existsSync(pref);
+    let result = pref;
+    if(pref[0] !== '/' && pref[0] !== undefined) {
+        let folder = vscode.workspace.workspaceFolders?.[0].uri.fsPath;
+        if(folder !== undefined) {
+            result = path.join(folder, pref);
+        }
+    }
+    const validSaveLocation = result == '' || fs.existsSync(result);
     if (!validSaveLocation) {
         vscode.window.showErrorMessage(
-            `Invalid save location, reverting to default. path not exists: ${pref}`,
+            `Invalid save location, reverting to default. path not exists: ${result}`,
         );
         updatePreference('general.saveLocation', '');
         return '';
     }
-    return pref;
+    return result;
 };
 
 export const getHideStderrorWhenCompiledOK = (): boolean =>
